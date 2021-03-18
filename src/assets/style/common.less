@@ -1,0 +1,78 @@
+@import './variables.less';
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hide {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.block {
+  display: block;
+}
+
+.line-block {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+/** 页面内级别样式 **/
+.index {
+  height: 100%;
+
+  .ant-layout {
+    height: 100%;
+  }
+
+  .container {
+    height: 100%;
+    padding: 15px;
+  }
+}
+
+.ant-btn {
+  height: 30px;
+}
+
+.ant-btn-primary {
+  background-color: @btnPrimary;
+  border-color: @btnPrimary;
+  &:hover, &:focus {
+    background-color: @btnHoverPrimary;
+    border-color: @btnHoverPrimary;
+  }
+}
