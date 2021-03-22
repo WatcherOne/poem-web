@@ -1,7 +1,19 @@
 <template>
   <div class="container">
-    <a-row>
-      <a-col :span="12" :offset="6">
+    <div class="message-info">
+      <span>提示Tips</span>
+    </div>
+    <a-row type="flex" justify="space-between" align="middle">
+        <a-col v-for="i in 4" :span="5" :key="i">
+          <a-card title="Card title">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </a-card>
+        </a-col>
+    </a-row>
+    <a-row class="like-list">
+      <a-col :span="8">
         <a-carousel autoplay arrows effect="fade">
           <template #prevArrow>
             <div class="custom-slick-arrow left-arrow">
@@ -37,6 +49,21 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  padding: 20px 50px 15px;
+
+  .message-info {
+    line-height: 30px;
+    padding: 15px;
+    color: @white;
+    background: @secondaryColor;
+    border-radius: 4px;
+    margin-bottom: @verticalHeight;
+  }
+
+  .ant-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  }
+
   .ant-carousel :deep(.slick-slide) {
     height: 500px;
     text-align: center;
@@ -67,6 +94,10 @@ export default {
         display: none;
       }
     }
+  }
+
+  .like-list {
+    margin-top: @verticalHeight;
   }
 }
 </style>

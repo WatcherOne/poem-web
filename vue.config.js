@@ -2,6 +2,10 @@ const path = require('path')
 
 module.exports = {
   runtimeCompiler: true,
+  /* 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度 */
+  productionSourceMap: false,
+  /* 代码保存时进行eslint检测 */
+  lintOnSave: true,
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
