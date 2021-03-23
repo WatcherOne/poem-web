@@ -38,7 +38,6 @@ export default {
       const pathArr = path.split('/')
       const openKey = pathArr.length > 2 ? [pathArr[1]] : []
       const activeKey = pathArr.length > 2 ? pathArr[2] : pathArr[1]
-      console.log(pathArr, openKey, activeKey)
       this.$store.dispatch('changeOpenAside', openKey)
       this.$store.dispatch('changeActiveAside', [activeKey])
     }

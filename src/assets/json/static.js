@@ -10,7 +10,7 @@ export const themeArr = ['drak-theme', 'light-theme', 'pink-theme']
 // 导航栏
 export const siderData = [
   { title: '首页', key: 'home', link: '/home', hasChild: false, children: [] },
-  { title: '诗歌列表', key: 'poem', link: '/404', hasChild: false, children: [] },
+  { title: '诗歌列表', key: 'poem', link: '/poem', hasChild: false, children: [] },
   { title: '文章列表', key: 'circle', link: '/403', hasChild: false, children: [] },
   { title: '有趣', key: 'playing', link: '/playing', hasChild: false, children: [] },
   {
@@ -22,11 +22,11 @@ export const siderData = [
     ]
   },
   {
-    title: '测试页面',
-    key: 'test',
+    title: '管理中心',
+    key: 'system',
     hasChild: true,
     children: [
-      { title: '测试信息', key: 'detest', link: '/403', hasChild: false, children: [] }
+      { title: '用户管理', key: 'user', link: '/system/user', hasChild: false, children: [] }
     ]
   }
 ]

@@ -20,5 +20,18 @@ module.exports = {
       .test(/\.ico$/)
       .use('url-loader')
       .loader('url-loader')
+  },
+  // 跨域
+  devServer: {
+    open: false,
+    proxy: {
+      '/api': {
+        target: 'http://192.168.0.193:8099/api',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   }
 }

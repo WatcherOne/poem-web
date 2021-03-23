@@ -6,8 +6,10 @@ const NotFound = () => import(/* webpackChunkName: "404" */ '@/views/404.vue')
 // 页面
 const Index = () => import(/* webpackChunkName: "index" */ '@/views/index.vue')
 const Home = () => import(/* webpackChunkName: "home" */ '@/views/home.vue')
+const Poem = () => import(/* webpackChunkName: "poem" */ '@/views/poem.vue')
 const Play = () => import(/* webpackChunkName: "play" */ '@/views/play.vue')
 const My = () => import(/* webpackChunkName: "my" */ '@/views/my.vue')
+const User = () => import(/* webpackChunkName: "user" */ '@/views/user.vue')
 
 const routes = [
   {
@@ -17,8 +19,10 @@ const routes = [
     component: Index,
     children: [
       { path: '/home', name: 'home', component: Home, meta: { auth: [1] } },
+      { path: '/poem', name: 'poem', component: Poem, meta: { auth: [1] } },
       { path: '/playing', name: 'play', component: Play },
       { path: '/myself/my', name: 'my', component: My },
+      { path: '/system/user', name: 'user', component: User },
       { path: '/403', name: 'notAuth', component: NotAuth },
       { path: '/404', name: 'notFound', component: NotFound }
     ]
