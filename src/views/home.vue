@@ -55,7 +55,7 @@ export default {
     line-height: 30px;
     padding: 15px;
     color: @white;
-    background: @secondaryColor;
+    background: @primaryColor;
     border-radius: 4px;
     margin-bottom: @verticalHeight;
   }
@@ -67,7 +67,7 @@ export default {
   .ant-carousel :deep(.slick-slide) {
     height: 500px;
     text-align: center;
-    background: @secondaryColor;
+    background: @primaryColor;
     overflow: hidden;
   }
 
@@ -76,7 +76,7 @@ export default {
     height: 25px;
     font-size: 25px;
     color: @white;
-    background-color: @secondaryColor;
+    background-color: @primaryColor;
     opacity: 0.5;
   }
 

@@ -92,3 +92,50 @@ ul, li {
   border-radius: @borderRadius;
   margin-bottom: 20px;
 }
+
+.top-search-form .ant-select {
+  width: 194px;
+}
+
+/** 表格样式 **/
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 10px 15px;
+}
+
+.ant-table-thead > tr > th {
+  color: @primaryTextColor;
+  background: @primaryColor;
+}
+
+/**  弹窗样式  **/
+.ant-modal {
+  .ant-modal-close {
+    color: @primaryTextColor;
+  }
+  .ant-modal-header {
+    background: @primaryColor;
+    .ant-modal-title {
+      color: @primaryTextColor;
+    }
+  }
+
+  .ant-modal-body .ant-form-item {
+    padding: 0 50px;
+    margin-bottom: 10px;
+    .ant-form-item-label label {
+      padding: 3px 8px 5px;
+      display: inline-block;
+      line-height: 1.5715;
+      min-width: 123px;
+      border: 1px solid @borderColor;
+      border-right: 0;
+      text-align: center;
+      &::after {
+        display: none;
+      }
+    }
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+  }
+}

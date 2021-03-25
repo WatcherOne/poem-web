@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { Button, Layout, Row, Col, Menu, Carousel, Card, Form, Input, Table } from 'ant-design-vue'
+import { Button, Layout, Row, Col, Menu, Carousel, Card, Form, Input, Select, Table, Modal } from 'ant-design-vue'
 import router from './router'
 import store from './store'
 import axios from './axios/index'
@@ -20,7 +20,9 @@ app.use(Carousel)
 app.use(Card)
 app.use(Form)
 app.use(Input)
+app.use(Select)
 app.use(Table)
+app.use(Modal)
 app.use(router)
 app.use(store)
 

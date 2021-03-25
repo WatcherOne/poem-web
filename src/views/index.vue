@@ -38,7 +38,7 @@ export default {
       const pathArr = path.split('/')
       const openKey = pathArr.length > 2 ? [pathArr[1]] : []
       const activeKey = pathArr.length > 2 ? pathArr[2] : pathArr[1]
-      this.$store.dispatch('changeOpenAside', openKey)
+      !this.collapsed && this.$store.dispatch('changeOpenAside', openKey)
       this.$store.dispatch('changeActiveAside', [activeKey])
     }
   }
@@ -49,10 +49,10 @@ export default {
 .index {
   .ant-layout-header {
     padding: 0 20px;
-    background: @primaryColor;
+    background: @bgColor;
   }
   .ant-layout-sider {
-    background: @primaryColor;
+    background: @bgColor;
   }
 }
 </style>

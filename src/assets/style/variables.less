@@ -1,13 +1,16 @@
 // 色调切换
 .drak-theme {
-    --primary-color: #172426;
-    --second-color: #a3ccd3;
+    --background-color:#172426;
+    --primary-color: #78c3d0;
+    --primary-text-color: #fff;
+    // --second-color: #78c3d0;
     --sidebar-color: rgba(255, 255, 255, 0.651);
-    --sidebar-selected-bg: #a3ccd3;
+    --sidebar-selected-bg: #78c3d0;
     --sidebar-selected-color: white;
     --sidebar-hover-color: white;
-    --btn-primary: #a3ccd3;
-    --btn-primary-hover: #a3d5d9;
+    // hover 相差 906
+    --btn-primary: #78c3d0;
+    --btn-primary-hover: #78CCD6;
 }
 
 .pink-theme {
@@ -31,15 +34,17 @@
 }
 
 // 公用颜色
+@bgColor: var(--background-color);
 @primaryColor: var(--primary-color);
-@secondaryColor: var(--second-color);
+@primaryTextColor: var(--primary-text-color);
+// @secondaryColor: var(--second-color);
 @borderColor: #dedede;
 @borderRadius: 5px;
 @white: white;
 
 // 导航条
 @sidebarColor: var(--sidebar-color);
-@sidebarBg: @primaryColor;
+@sidebarBg: @bgColor;
 @sidebarSeletedColor: var(--sidebar-selected-color);
 @sidebarSeletedBg: var(--sidebar-selected-bg);
 @sidebarHoverColor: var(--sidebar-hover-color);

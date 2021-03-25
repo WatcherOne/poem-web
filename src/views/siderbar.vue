@@ -60,7 +60,7 @@ export default {
   .ant-menu {
     border-right: 0;
     color: @sidebarColor;
-    background: @primaryColor;
+    background: @bgColor;
   }
   .ant-menu .ant-menu-item {
     width: 100%;
