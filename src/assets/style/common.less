@@ -85,6 +85,18 @@ ul, li {
   }
 }
 
+/** checkbox样式 **/
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background: @primaryColor;
+  border-color: @primaryColor;
+}
+.ant-tree-checkbox:hover .ant-tree-checkbox-inner {
+  border-color: @primaryColor;
+}
+.ant-tree-checkbox-checked::after {
+  border-color: @primaryColor;
+}
+
 /**  顶部搜索框box  **/
 .top-search-form {
   border: 1px solid @borderColor;

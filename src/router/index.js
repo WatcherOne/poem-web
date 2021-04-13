@@ -10,6 +10,7 @@ const Poem = () => import(/* webpackChunkName: "poem" */ '@/views/poem.vue')
 const Play = () => import(/* webpackChunkName: "play" */ '@/views/play.vue')
 const My = () => import(/* webpackChunkName: "my" */ '@/views/my.vue')
 const User = () => import(/* webpackChunkName: "user" */ '@/views/user.vue')
+const Role = () => import(/* webpackChunkName: "role" */ '@/views/role.vue')
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
       { path: '/playing', name: 'play', component: Play },
       { path: '/myself/my', name: 'my', component: My },
       { path: '/system/user', name: 'user', component: User },
+      { path: '/system/role', name: 'role', component: Role },
       { path: '/403', name: 'notAuth', component: NotAuth },
       { path: '/404', name: 'notFound', component: NotFound }
     ]

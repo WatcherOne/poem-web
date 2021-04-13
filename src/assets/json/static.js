@@ -26,7 +26,8 @@ export const siderData = [
     key: 'system',
     hasChild: true,
     children: [
-      { title: '用户管理', key: 'user', link: '/system/user', hasChild: false, children: [] }
+      { title: '用户管理', key: 'user', link: '/system/user', hasChild: false, children: [] },
+      { title: '角色管理', key: 'role', link: '/system/role', hasChild: false, children: [] }
     ]
   }
 ]

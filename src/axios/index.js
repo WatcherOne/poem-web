@@ -27,7 +27,7 @@ axios.interceptors.response.use(res => {
     return responseData.data
   } else if (responseData && responseData.code !== 0) {
     message.error(responseData.msg)
-    return responseData.data
+    return Promise.reject(error)
   } else {
     return responseData.data
   }

@@ -8,7 +8,7 @@
       @openChange="onOpenChange"
       @select="selectItem"
     >
-      <template v-for="(item, i) in siderData" :key="i">
+      <template v-for="item in siderData">
         <template v-if="item.hasChild">
           <sub-menu :menu-info="item" :key="item.key"></sub-menu>
         </template>
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import { siderData } from '../assets/json/static'
-import { SubMenu } from '../components/siderbarChild'
+import { siderData } from '@/assets/json/static'
+import { SubMenu } from '@/components/siderbarChild'
 import { PieChartOutlined } from '@ant-design/icons-vue'
 import { mapState } from 'vuex'
 

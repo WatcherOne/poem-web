@@ -1,18 +1,18 @@
 <template>
-  <div class="container">
-    <a-form layout="inline" :model="formData" class="top-search-form">
+  <div class="container user-container">
+    <a-form layout="inline" :model="searchOptions" class="top-search-form">
       <a-form-item label="用户名">
-        <a-input v-model:value="formData.username" placeholder="请输入用户名模糊查询"></a-input>
+        <a-input v-model:value="searchOptions.username" placeholder="请输入用户名模糊查询"></a-input>
       </a-form-item>
       <a-form-item label="性别">
-        <a-select v-model:value="formData.sex">
+        <a-select v-model:value="searchOptions.sex">
           <a-select-option value="">全部</a-select-option>
           <a-select-option value="1">男</a-select-option>
           <a-select-option value="2">女</a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item label="状态">
-        <a-select>
+        <a-select v-model:value="searchOptions.status">
           <a-select-option value="">全部</a-select-option>
           <a-select-option value="1">已禁言</a-select-option>
           <a-select-option value="2">已停布</a-select-option>
@@ -25,7 +25,7 @@
         <a-button @click="openModal()" type="primary">新增</a-button>
       </a-form-item>
     </a-form>
-    <a-table :loading="loading" :data-source="data" :columns="columns" rowKey="userId" :pagination="total > pageSize">
+    <a-table :loading="loading" :data-source="tableData" :columns="columns" rowKey="userId" :pagination="total > pageSize">
       <template #sex="{ record }">
         {{ record.sex == 1 ? '男' : '女' }}
       </template>
@@ -36,30 +36,36 @@
     <!-- Add and Edit -->
     <div ref="modalBox">
       <a-modal
-        v-model:visible="showModal"
+        :visible="showModal"
         :title="title"
         :centered="true"
         okText="确认"
         cancelText="取消"
-        :getContainer="() => this.$refs.modalBox"
-        @ok="submitData">
-        <a-form :model="submitForm">
-          <a-form-item label="用户名">
-            <a-input v-model:value="submitForm.username" placeholder="请输入用户名"></a-input>
+        :getContainer="getContainer"
+        :maskClosable="false"
+        @cancel="closeModal"
+        @ok="submitUser">
+        <a-form ref="userForm" :model="userInfo" :rules="rules">
+          <a-form-item label="用户名" name="username">
+            <a-input v-model:value="userInfo.username" placeholder="请输入用户名"></a-input>
           </a-form-item>
-          <a-form-item label="别称">
-            <a-input v-model:value="submitForm.nickname" placeholder="请输入别称"></a-input>
+          <a-form-item label="密码" name="password">
+            <a-input v-model:value="userInfo.password" placeholder="请输入密码"></a-input>
           </a-form-item>
-          <a-form-item label="性别">
-            <a-select v-model:value="submitForm.sex">
-              <a-select-option value="">全部</a-select-option>
+          <a-form-item label="别称" name="nickname">
+            <a-input v-model:value="userInfo.nickname" placeholder="请输入别称"></a-input>
+          </a-form-item>
+          <a-form-item label="角色" name="roleId">
+            <a-input v-model:value="userInfo.roleId" placeholder="请选择角色"></a-input>
+          </a-form-item>
+          <a-form-item label="性别" name="sex">
+            <a-select v-model:value="userInfo.sex">
               <a-select-option value="1">男</a-select-option>
               <a-select-option value="2">女</a-select-option>
             </a-select>
           </a-form-item>
-          <a-form-item label="状态">
-            <a-select>
-              <a-select-option value="">全部</a-select-option>
+          <a-form-item label="状态" name="status">
+            <a-select v-model:value="userInfo.status">
               <a-select-option value="1">已禁言</a-select-option>
               <a-select-option value="2">已停布</a-select-option>
             </a-select>
@@ -83,62 +89,89 @@ const columns = [
 
 export default {
   setup () {
-    const { ctx } = getCurrentInstance()
-    const formData = reactive({
+    const { proxy } = getCurrentInstance()
+
+    const loading = ref(true)
+    const tableData = ref([])
+    const pageSize = ref(15)
+    const total = ref(0)
+    /* **************  检索条件  ***************/
+    const searchOptions = reactive({
       username: '',
-      nickname: '',
-      sex: ''
+      sex: '',
+      status: ''
     })
-    const submitForm = ref({})
+    const getData = () => {
+      loading.value = true
+      const params = toRaw(searchOptions)
+      console.log(params)
+      proxy.$http.get('/getUserList', params).then(res => {
+        loading.value = false
+        tableData.value = res
+      })
+    }
+
+    /* **************  用户操作-新增 & 编辑  ***************/
+    const modalBox = ref()
+    const userInfo = ref({})
     const modalData = reactive({
       showModal: false,
       title: '新增'
     })
-    const loading = ref(true)
-    const data = ref([])
-    const pageSize = ref(15)
-    const total = ref(0)
-
-    const getData = () => {
-      loading.value = true
-      const params = toRaw(formData)
-      ctx.$http.get('/getUserList', params).then(res => {
-        loading.value = false
-        data.value = res
-      })
+    const userForm = ref()
+    const rules = {
+      username: [{ required: true, message: '', trigger: 'blur' }],
+      password: [{ required: true, message: '', trigger: 'blur' }],
+      roleId: [{ required: true, message: '', trigger: 'change' }],
+      sex: [{ required: true, message: '', trigger: 'change' }],
+      status: [{ required: true, message: '', trigger: 'change' }]
     }
-
+    const getContainer = () => {
+      return proxy.$refs.modalBox
+    }
     const openModal = (data) => {
       if (data) {
-        submitForm.value = JSON.parse(JSON.stringify(toRaw(data)))
+        userInfo.value = JSON.parse(JSON.stringify(toRaw(data)))
         modalData.title = '编辑'
       } else {
-        submitForm.value = {}
+        userInfo.value = { sex: '1', status: '1', roleId: '2' }
         modalData.title = '新增'
       }
       modalData.showModal = true
     }
-
-    const submitData = () => {
-      const params = toRaw(submitForm.value)
-      console.log(params)
-      ctx.$http.post('/changeUser', params, res => {
-        console.log(res)
+    const closeModal = () => {
+      modalData.showModal = false
+    }
+    const submitUser = () => {
+      const params = toRaw(userInfo.value)
+      userForm.value.validate().then(() => {
+        console.log(params)
+      }).catch(error => {
+        console.log(error)
       })
+      // proxy.$http.post('/changeUser', params).then(_ => {
+      //   closeModal()
+      //   getData()
+      // })
     }
 
     return {
-      formData,
-      columns,
       loading,
-      data,
+      searchOptions,
+      getData,
+      columns,
+      tableData,
       pageSize,
       total,
-      getData,
-      openModal,
       ...toRefs(modalData),
-      submitForm,
-      submitData
+      modalBox,
+      getContainer,
+      userForm,
+      rules,
+      openModal,
+      closeModal,
+      userInfo,
+      submitUser
     }
   },
   created: function () {
@@ -146,3 +179,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.container.user-container {
+  height: initial;
+}
+</style>
