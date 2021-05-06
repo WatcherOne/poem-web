@@ -76,12 +76,28 @@ ul, li {
   height: 30px;
 }
 
+.ant-btn:hover, .ant-btn:focus {
+  color: @primaryColor;
+  border-color: @primaryColor;
+}
+
 .ant-btn-primary {
   background-color: @btnPrimary;
   border-color: @btnPrimary;
   &:hover, &:focus {
+    color: @white;
     background-color: @btnHoverPrimary;
     border-color: @btnHoverPrimary;
+  }
+}
+
+.ant-btn-danger {
+  background-color: @btnDanger;
+  border-color: @btnDanger;
+  &:hover, &:focus {
+    color: @white;
+    background-color: @btnHoverDanger;
+    border-color: @btnHoverDanger;
   }
 }
 

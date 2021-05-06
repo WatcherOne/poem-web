@@ -18,7 +18,16 @@ export const siderData = [
     key: 'myself',
     hasChild: true,
     children: [
-      { title: '资料信息', key: 'my', link: '/myself/my', hasChild: false, children: [] }
+      { title: '个人中心', key: 'my', link: '/myself/my', hasChild: false, children: [] }
+    ]
+  },
+  {
+    title: '我的发布',
+    key: 'publish',
+    hasChild: true,
+    children: [
+      { title: '诗歌发布', key: 'myPoem', link: '/publish/myPoem', hasChild: false, children: [] },
+      { title: '文章发布', key: 'publish/circle', link: '/myself/my', hasChild: false, children: [] }
     ]
   },
   {

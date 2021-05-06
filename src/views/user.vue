@@ -60,8 +60,8 @@
           </a-form-item>
           <a-form-item label="性别" name="sex">
             <a-select v-model:value="userInfo.sex">
-              <a-select-option value="1">男</a-select-option>
-              <a-select-option value="2">女</a-select-option>
+              <a-select-option :value="1">男</a-select-option>
+              <a-select-option :value="2">女</a-select-option>
             </a-select>
           </a-form-item>
           <a-form-item label="状态" name="status">
@@ -104,7 +104,6 @@ export default {
     const getData = () => {
       loading.value = true
       const params = toRaw(searchOptions)
-      console.log(params)
       proxy.$http.get('/getUserList', params).then(res => {
         loading.value = false
         tableData.value = res
@@ -134,7 +133,7 @@ export default {
         userInfo.value = JSON.parse(JSON.stringify(toRaw(data)))
         modalData.title = '编辑'
       } else {
-        userInfo.value = { sex: '1', status: '1', roleId: '2' }
+        userInfo.value = { sex: 1, status: '1', roleId: '2' }
         modalData.title = '新增'
       }
       modalData.showModal = true
