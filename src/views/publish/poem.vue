@@ -18,9 +18,6 @@
             <a-form-item>
                 <a-button @click="getData" type="primary">搜索</a-button>
             </a-form-item>
-            <a-form-item>
-                <a-button type="primary">去发布</a-button>
-            </a-form-item>
         </a-form>
         <div class="poem-lists">
             <div v-for="(item, i) in lists" :key="i" class="each-poem">

@@ -12,5 +12,6 @@ export const CHANGE_ACTIVE_ASIDE = (state, key) => {
 }
 
 export const TOGGLE_COLLAPSED = (state) => {
+  state.openKeys = []
   state.collapsed = !state.collapsed
 }

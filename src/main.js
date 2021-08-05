@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import axios from './axios/index'
 import message from './utils/message.config'
+import './assets/style/root.less'
+import './assets/style/common.less'
 
 const app = createApp(App)
 

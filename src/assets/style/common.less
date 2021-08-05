@@ -1,4 +1,4 @@
-@import './variables.less';
+// @import './variables.less';
 
 html {
   height: 100%;
@@ -49,10 +49,6 @@ ul, li {
 .clear {
   clear: both;
 }
-
-/** 元素间隔 **/
-@verticalHeight: 30px;
-@horizontalWidth: 15px;
 
 /** 页面内级别样式 **/
 .index {
@@ -133,6 +129,19 @@ ul, li {
 .ant-table-thead > tr > th {
   color: @primaryTextColor;
   background: @primaryColor;
+}
+
+.ant-pagination-item-active {
+  border-color: @primaryColor;
+  a {
+    color: @primaryColor;
+  }
+  &:hover {
+    border-color: @primaryHoverColor;
+    a {
+      color: @primaryHoverColor;
+    }
+  }
 }
 
 /**  弹窗样式  **/
